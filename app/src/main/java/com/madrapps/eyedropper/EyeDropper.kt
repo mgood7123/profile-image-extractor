@@ -33,7 +33,10 @@ class EyeDropper(private val view: View, private val listener: ColorSelectionLis
     private fun setTouchListener() {
         view.setOnTouchListener { _, event ->
             if (event.down()) selectionListener?.onSelectionStart(event)
-            notifyColorSelection(event.x.toInt(), event.y.toInt())
+            val x = event.x.toInt()
+            val y = event.y.toInt()
+            listener.onTouch(x, y)
+            notifyColorSelection(x, y)
             if (event.up()) selectionListener?.onSelectionEnd(event)
             true
         }
@@ -67,7 +70,6 @@ class EyeDropper(private val view: View, private val listener: ColorSelectionLis
 
     private fun notifyColorSelection(x: Int, y: Int) {
         val colorAtPoint = getColorAtPoint(x, y)
-        listener.onTouch(x,y)
         listener.onColorSelected(colorAtPoint)
     }
 
