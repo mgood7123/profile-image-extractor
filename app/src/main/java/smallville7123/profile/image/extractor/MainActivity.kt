@@ -12,7 +12,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        imageView.setImageResource(R.mipmap.ic_launcher)
+        frameLeft.setBackgroundColor(android.graphics.Color.BLACK)
+        frameRight.setBackgroundColor(android.graphics.Color.BLACK)
+        frameTop.setBackgroundColor(android.graphics.Color.BLACK)
+        frameBottom.setBackgroundColor(android.graphics.Color.BLACK)
         textView2.text = "Selected Color: null"
         EyeDropper(imageView, object : EyeDropper.ColorSelectionListener {
             override fun onTouch(x: Int, y: Int) {
