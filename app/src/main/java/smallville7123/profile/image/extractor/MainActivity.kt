@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        frameLeft.setBackgroundColor(android.graphics.Color.BLACK)
-        frameRight.setBackgroundColor(android.graphics.Color.BLACK)
-        frameTop.setBackgroundColor(android.graphics.Color.BLACK)
-        frameBottom.setBackgroundColor(android.graphics.Color.BLACK)
+        frameLeft.setBackgroundColor(android.graphics.Color.RED)
+        frameRight.setBackgroundColor(android.graphics.Color.RED)
+        frameTop.setBackgroundColor(android.graphics.Color.RED)
+        frameBottom.setBackgroundColor(android.graphics.Color.RED)
         textView2.text = "Selected Color: null"
         EyeDropper(imageView, object : EyeDropper.ColorSelectionListener {
             override fun onTouch(x: Int, y: Int) {
