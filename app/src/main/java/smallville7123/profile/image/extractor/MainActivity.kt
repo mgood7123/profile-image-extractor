@@ -1,5 +1,6 @@
 package smallville7123.profile.image.extractor
 
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,16 +18,21 @@ class MainActivity : AppCompatActivity() {
         frameTop.setBackgroundColor(android.graphics.Color.RED)
         frameBottom.setBackgroundColor(android.graphics.Color.RED)
         textView2.text = "Selected Color: null"
-        EyeDropper(imageView, object : EyeDropper.ColorSelectionListener {
-            override fun onTouch(x: Int, y: Int) {
-                // x,y is given when you touch the targetView
-                textView3.text = "x: $x\ny: $y"
+        val targetView: ImageView = colorSample
+        targetView.setOnTouchListener { v, ev -> // TODO Auto-generated method stub
+            val img = v as ImageView
+            val evX = ev.x.toInt()
+            val evY = ev.y.toInt()
+            img.isDrawingCacheEnabled = true
+            val imgbmp = Bitmap.createBitmap(img.drawingCache)
+            img.isDrawingCacheEnabled = false
+            try {
+                val pxl = imgbmp.getPixel(evX, evY)
+                ColorView.setBackgroundColor(pxl)
+            } catch (ignore: Exception) {
             }
-            override fun onColorSelected(@ColorInt color: Int) {
-                // color is the color selected when you touch the targetView
-                ColorView.setBackgroundColor(color)
-                textView2.text = "Selected Color: $color"
-            }
-        })
+            imgbmp.recycle()
+            true
+        }
     }
 }
